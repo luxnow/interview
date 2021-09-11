@@ -2,12 +2,9 @@
 
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import './style.css'
+import { MODE } from '../../utils/enums';
+import './style.css';
 
-enum MODE {
-	LOGIN,
-	REGISTER
-}
 
 export default (props: any) => {
 
@@ -17,6 +14,9 @@ export default (props: any) => {
 
 	const [mode, setMode] = useState<number>(MODE.LOGIN)
 
+	const changeMode = (mode: number) => {
+		setMode(mode)
+	}
 
 	return (
 		<div>	<form
@@ -56,8 +56,9 @@ export default (props: any) => {
 			<input type="submit" />
 		</form>
 			<div>
-
+				<span onClick={() => { setMode(MODE.REGISTER) }}>注册</span>
+				<span onClick={() => { setMode(MODE.LOGIN) }}>登录</span>
 			</div>
-		</div>
+		</div >
 	)
 }
