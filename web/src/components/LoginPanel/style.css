@@ -1,0 +1,47 @@
+
+
+.form{
+    background-color: rgb(228, 228, 228);
+    margin: 0 auto;
+    width: 500px;
+}
+
+.form .form-item{
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+}
+
+.form .form-item .label{
+    width: 100px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+input {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-variant: tabular-nums;
+    list-style: none;
+    font-feature-settings: "tnum";
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-width: 0;
+    padding: 4.5px 11px;
+    color: #595959;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    transition: all .3s;
+    outline: none;
+}
+
+input:hover{
+    border-color: #47c479;
+    border-right-width: 1px!important;
+}
