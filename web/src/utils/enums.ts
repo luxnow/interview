@@ -2,5 +2,7 @@
 
 export enum MODE {
     LOGIN,
-    REGISTER
+    REGISTER,
+    VIEW,
+    EDIT
 }

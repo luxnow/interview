@@ -5,9 +5,12 @@ import { useForm } from 'react-hook-form';
 import { MODE } from '../../utils/enums';
 import './style.css';
 import { login, register as reg } from '../../api/loginApi';
+import { withRouter } from 'react-router';
 
 
-export default (props: any) => {
+export default withRouter((props: any) => {
+
+	const { history } = props;
 
 	const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -24,12 +27,20 @@ export default (props: any) => {
 	}
 
 	const _login = (data: any) => {
-		login(data).then(res => { })
+		login(data).then(res => {
+			if (res.sucess) {
+				localStorage.setItem("name", data.name)
+				history.push("/info")
+			}
+		})
 	}
 
 	const _register = (data: any) => {
 		reg(data).then((res: any) => {
-
+			if (res.success) {
+				localStorage.setItem("name", data.name)
+				history.push("/info")
+			}
 		})
 	}
 
@@ -48,26 +59,28 @@ export default (props: any) => {
 					</div>
 				</div>
 
-				<div className="form-item">
-					<div className="label">
-						密码
-					</div>
-					<div>
-						<input {...register("password", { required: true })} />
-						{errors.exampleRequired && <span>This field is required</span>}
-					</div>
-				</div>
 				{
 					mode === MODE.REGISTER ?
-						<div className="form-item">
-							<div className="label">
-								重复密码
+						<>
+							<div className="form-item">
+								<div className="label">
+									密码
+								</div>
+								<div>
+									<input {...register("password", { required: true })} />
+									{errors.exampleRequired && <span>This field is required</span>}
+								</div>
 							</div>
-							<div>
-								<input {...register("repassword", { required: true })} />
-								{errors.exampleRequired && <span>This field is required</span>}
+							<div className="form-item">
+								<div className="label">
+									重复密码
+								</div>
+								<div>
+									<input {...register("repassword", { required: true })} />
+									{errors.exampleRequired && <span>This field is required</span>}
+								</div>
 							</div>
-						</div> : null
+						</> : null
 				}
 
 				<div className="form-item">
@@ -89,4 +102,4 @@ export default (props: any) => {
 			</div>
 		</div >
 	)
-}
+})
