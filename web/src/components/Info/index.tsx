@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { updateInfo } from '../../api/loginApi'
 import { MODE } from '../../utils/enums'
-import './style.css'
 
 export default () => {
 
