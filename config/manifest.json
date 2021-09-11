@@ -1,0 +1,23 @@
+{
+  "chunk/0.js": "/public/js/chunk/0.js",
+  "chunk/1.js": "/public/js/chunk/1.js",
+  "chunk/2.js": "/public/js/chunk/2.js",
+  "common.js": "/public/js/chunk/common.js",
+  "index.js": "/public/js/chunk/index.js",
+  "runtime.js": "/public/js/runtime.js",
+  "deps": {
+    "index.js": {
+      "js": [
+        "/public/js/runtime.js",
+        "/public/js/chunk/common.js",
+        "/public/js/chunk/index.js"
+      ],
+      "css": []
+    }
+  },
+  "info": {
+    "publicPath": "/public/",
+    "buildPath": "public",
+    "mapped": true
+  }
+}

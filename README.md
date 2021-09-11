@@ -1,24 +1,39 @@
-# 爆爆奢技术面试题
+# egg-vue-typescript-boilerplate
 
-请 Fork 本项目，按以下要求完成项目后提交 Pull request.
+Single Page Application Isomorphic Example for Egg + Vue, Front-End and Node of The Application are Written in TypeScript.
 
-## 项目内容
+## Document
 
-### 用户故事
+- https://easyjs.cn
 
-1. 用户可以在网站上注册和登录。注册和登录时，只需填写昵称即可。
-2. 用户可以修改自己的昵称，但不能跟其它人的昵称重复。
 
-### 基本要求
+## QuickStart
 
-1. 前端须使用 React 或 Vue 开发。
-2. 后端须使用 Node.js 开发。
-3. 须使用 Typescript 语言。
-4. 须有单元测试。
-5. README.md 须说明项目的启动方式及自动化测试方式。
+- Development
 
-### 进阶要求
+```bash
+$ npm install -g easywebpack-cli
+$ easy init
+$ npm install
+$ npm run dev
+$ open http://localhost:7001
+```
 
-- 前端界面自适应屏幕大小。
-- 添加编辑器配置文件以方便开发。
-- 其它能体现您的技术水平的特点。
+- test
+
+```bash
+$ npm run test
+
+- Publish
+
+```bash
+npm run tsc
+npm run build
+npm start
+```
+
+
+
+## License
+
+[MIT](LICENSE)
