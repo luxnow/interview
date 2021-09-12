@@ -23,8 +23,7 @@ Single Page Application Isomorphic Example for Egg + Vue, Front-End and Node of 
 
 
 ```bash
-$ npm install -g easywebpack-cli
-$ easy init
+
 $ npm install
 $ npm run dev
 $ open http://localhost:7001
