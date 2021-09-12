@@ -47,7 +47,7 @@ export default (appInfo: EggAppConfig) => {
   };
 
   exports.jwt = {
-    secret: 'wills_web_site_jwt',
+    secret: 'web_site_jwt',
     enable: true, // default is false
     match: '/jwt', // optional
   };

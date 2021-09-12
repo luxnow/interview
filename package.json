@@ -22,6 +22,7 @@
     "axios": "^0.21.1",
     "egg": "^2.3.0",
     "egg-cors": "^2.1.1",
+    "egg-jwt": "^3.1.7",
     "egg-router-util": "^1.1.16",
     "egg-scripts": "^2.10.0",
     "egg-sequelize-type": "0.0.1",
@@ -48,13 +49,13 @@
     "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
-    "@types/supertest": "^2.0.0",
     "@easy-team/easywebpack-cli": "^4.0.0",
     "@easy-team/easywebpack-vue": "^4.0.0",
     "@types/lodash": "^4.14.117",
     "@types/mocha": "^9.0.0",
     "@types/node": "^10.17.60",
     "@types/shortid": "^0.0.29",
+    "@types/supertest": "^2.0.0",
     "cz-conventional-changelog": "^2.1.0",
     "egg-bin": "^4.9.0",
     "egg-mock": "^3.26.0",

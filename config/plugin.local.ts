@@ -7,5 +7,9 @@ export default {
   },
   webpackvue : {
     package: 'egg-webpack-vue'
+  },
+  jwt : {
+    enable: true,
+    package: 'egg-jwt'
   }
 };
