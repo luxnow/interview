@@ -30,13 +30,13 @@ export default function SignupSignin(props: {
     <Box
       component="form"
       sx={{
-        height: '70vh',
-        marginTop: '30vh',
+        height: '100vh',
+        paddingTop: '30vh',
       }}
       noValidate
       autoComplete="off"
     >
-      <Card variant="outlined">
+      <Card variant="outlined" sx={{ boxShadow: 4, bgcolor: "ghostwhite" }}>
         <CardHeader
           title="SignIn/SignUp"
           titleTypographyProps={{
