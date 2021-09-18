@@ -1,0 +1,59 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for interview",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "npm run lint && npx mocha --exit -ui bdd --timeout 10000 -r ts-node/register --recursive --file ./test/setup.ts ./test/**/*.spec.ts",
+    "lint": "npx eslint ./src --fix",
+    "start": "npx ts-node ./src/index.ts"
+  },
+  "keywords": [
+    "koa",
+    "nodejs",
+    "ts"
+  ],
+  "engines" : {
+    "node" : ">=14"
+  },
+  "author": "khan",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "^10.1.1",
+    "esm": "^3.2.25",
+    "joi": "^17.4.2",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "lodash": "^4.17.21",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@hapi/shot": "^5.0.5",
+    "@types/chai": "^4.2.21",
+    "@types/faker": "^5.5.8",
+    "@types/hapi__shot": "^4.1.2",
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.3",
+    "@types/koa__cors": "^3.0.3",
+    "@types/koa__router": "^8.0.8",
+    "@types/lodash": "^4.14.173",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.9.2",
+    "@types/uuid": "^8.3.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "chai": "^4.3.4",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-mocha": "^9.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "faker": "^5.5.3",
+    "mocha": "^9.1.1",
+    "prettier": "^2.4.1"
+  }
+}
