@@ -3,10 +3,7 @@ package com.example.userweb;
 import com.example.userweb.utils.JWTHelper;
 import com.example.userweb.utils.RequestChecker;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +29,7 @@ public class UserController {
      * nickname=tom
      */
     @RequestMapping(value = "/user/register", method = RequestMethod.POST)
-    public String userRegister(@RequestBody String nickName) {
+    public String userRegister(@RequestParam String nickName) {
         Response res = new Response();
         String result = "";
         int code = 0;
@@ -54,7 +51,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
-    public String userLogin(@RequestBody String nickName, HttpServletResponse response) {
+    public String userLogin(@RequestParam String nickName, HttpServletResponse response) {
         Response res = new Response();
         String result = "";
         int code = 0;
@@ -81,7 +78,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/update", method = RequestMethod.POST)
-    public String userUpdate(@RequestBody String newNickName, HttpServletRequest request) {
+    public String userUpdate(@RequestParam String newNickName, HttpServletRequest request) {
         Response res = new Response();
         String result = "ok";
         int code = 0;
