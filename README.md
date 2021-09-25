@@ -41,8 +41,11 @@
 2. vitesse项目脚手架的深入理解及实践，已有实践上线项目
 3. 熟悉tailwindcss写法
 4. 成熟的 CI/CD 流程，及实际线上项目配置切换逻辑
+5. 其他更多可以进一步讨论
 
 ## 如何使用
+
+可以直接看在线版本： <https://luxnow-test-pied.vercel.app/>
 
 ```zsh
 npm i -g pnpm # 使用 pnpm
@@ -52,6 +55,7 @@ vercel # 初始化 vercel 项目关联
 vercel dev # api 项目本地运行
 pnpm dev:vite # 本地运行前端
 vercel --prod # 发布到 vercel 平台
+pnpm test # 自动化测试 rest api
 ```
 
 ## 使用逻辑
