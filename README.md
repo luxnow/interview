@@ -48,7 +48,10 @@
 npm i -g pnpm # 使用 pnpm
 pnpm i -g vercel # 添加 vercel cli
 pnpm i # 安装项目依赖
-vercel dev # api 项目运行
+vercel # 初始化 vercel 项目关联
+vercel dev # api 项目本地运行
+pnpm dev:vite # 本地运行前端
+vercel --prod # 发布到 vercel 平台
 ```
 
 ## 使用逻辑
@@ -56,3 +59,7 @@ vercel dev # api 项目运行
 1. 注册：填写 `user name` 点击 `Sign Up`
 1. 登录：填写 `user name` 点击 `Login`
 2. 更名：填写 `user name` 点击 `Update Name`
+
+## 其他
+
+今天第一次使用vercel的serverless，额外耗费了一些时间。
