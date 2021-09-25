@@ -1,6 +1,11 @@
 import jwt from 'jsonwebtoken'
 
-export const sign = async(tokenData) => {
+interface TokenData {
+  username: string
+  id: string
+}
+
+export const sign = async(tokenData: TokenData) => {
   const expiresIn = 24 * 3600 * 7
   const token = await jwt.sign(
     tokenData,

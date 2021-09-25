@@ -1,11 +1,10 @@
 import { VercelRequest, VercelResponse } from '@vercel/node'
-import allowCors from './utils/allowCors.ts'
-import jwt from './utils/jwt.ts'
-import { init as initDB, getModel } from './utils/mongoose.ts'
+import allowCors from './utils/allowCors'
+import { sign } from './utils/jwt'
+import { init as initDB, getModel } from './utils/mongoose'
 
 export default allowCors(async(request: VercelRequest, response: VercelResponse) => {
   const { username = '' } = request.body
-
   await initDB()
 
   const userModel = getModel('user')
@@ -17,7 +16,7 @@ export default allowCors(async(request: VercelRequest, response: VercelResponse)
     return
   }
 
-  const token = await jwt.sign({
+  const token = await sign({
     username: user.username,
     id: user._id.toString(),
   })
