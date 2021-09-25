@@ -2,11 +2,10 @@ import { VercelRequest, VercelResponse } from '@vercel/node'
 import jwt from './utils/jwt.ts'
 import allowCors from './utils/allowCors.ts'
 import { init as initDB, getModel } from './utils/mongoose.ts'
+initDB()
 
 export default allowCors(async(request: VercelRequest, response: VercelResponse) => {
   const { username = '' } = request.body
-  await initDB()
-  console.log('====> username :', username)
 
   const userModel = getModel('user')
   const isExist = await userModel.findOne({ username })
