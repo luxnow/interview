@@ -14,7 +14,9 @@ const getUserData = async () => {
     return
 
   const { data } = await api.post('/api/user-info')
-  console.log('====> data :', data)
+  if (data.err) {
+    doLogout()
+  }
 }
 getUserData()
 
@@ -29,6 +31,7 @@ const doSignup = async () => {
     showForm.value = false
   }
 }
+
 const doLogin = async () => {
   const { data } = await api.post('/api/user-login', { username: username.value })
   if (data.err)
@@ -40,6 +43,26 @@ const doLogin = async () => {
     isLogin.value = true
     showForm.value = false
   }
+}
+
+const doUpdate = async () => {
+  const { data } = await api.post('/api/user-update', { username: username.value })
+  if (data.err)
+    err.value = data.err
+
+  if (data.token) {
+    token.value = data.token
+    loginUserName.value = username.value
+    isLogin.value = true
+    showForm.value = false
+  }
+}
+
+const doLogout = () => {
+  token.value = ''
+  loginUserName.value = ''
+  isLogin.value = false
+  showForm.value = true
 }
 
 </script>
@@ -54,9 +77,14 @@ const doLogin = async () => {
             <span class="text-purple-500">{{ loginUserName }}</span>, Welcome Back!
           </div>
           <button
+            type="submit"
+            class="border border-transparent rounded-md flex font-medium bg-indigo-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            @click="doLogout"
+          >Logout</button>
+          <button
             v-if="!showForm"
             type="submit"
-            class="border border-transparent rounded-md flex font-medium bg-yellow-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+            class="border border-transparent rounded-md flex font-medium bg-green-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
             @click="showForm = true"
           >Update Name</button>
         </div>
@@ -90,8 +118,9 @@ const doLogin = async () => {
           <button
             v-else
             type="submit"
-            class="border border-transparent rounded-md flex font-medium bg-pink-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-            @click="doUpdateName"
+            :disabled="username === loginUserName || username === ''"
+            class="border border-transparent rounded-md flex font-medium bg-pink-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:(bg-gray-500 cursor-not-allowed)"
+            @click="doUpdate"
           >Update Name</button>
         </div>
       </div>
