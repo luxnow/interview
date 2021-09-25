@@ -8,6 +8,7 @@ const err = ref('')
 const isLogin = useStorage('isLogin', false)
 const token = useStorage('token', '')
 const showForm = ref(true)
+const loadingType = ref('')
 
 const getUserData = async () => {
   if (!token.value)
@@ -20,6 +21,7 @@ const getUserData = async () => {
 getUserData()
 
 const doSignup = async () => {
+  loadingType.value = 'signup'
   const { data } = await api.post('/api/user-signup', { username: username.value })
   if (data.err)
     err.value = data.err
@@ -32,6 +34,8 @@ const doSignup = async () => {
 }
 
 const doLogin = async () => {
+  loadingType.value = 'login'
+
   const { data } = await api.post('/api/user-login', { username: username.value })
   if (data.err)
     err.value = data.err
@@ -46,6 +50,7 @@ const doLogin = async () => {
 }
 
 const doUpdate = async () => {
+  loadingType.value = 'update'
   const { data } = await api.post('/api/user-update', { username: username.value })
   if (data.err)
     err.value = data.err
@@ -84,12 +89,7 @@ const doLogout = () => {
             class="border border-transparent rounded-md flex font-medium bg-indigo-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             @click="doLogout"
           >Logout</button>
-          <button
-            v-if="!showForm"
-            type="submit"
-            class="border border-transparent rounded-md flex font-medium bg-green-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-            @click="showForm = true"
-          >Update Name</button>
+          <btn v-if="!showForm" class="bg-green-600" @click="showForm = true">Update Name</btn>
         </div>
         <div v-if="showForm">
           <div>
@@ -107,25 +107,28 @@ const doLogout = () => {
           </div>
           <div v-if="err" class="text-center p-4 text-red-500">{{ err }}</div>
           <div v-if="!isLogin">
-            <button
-              type="submit"
-              class="border border-transparent rounded-md flex font-medium bg-indigo-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              @click="doSignup"
-            >Sign Up</button>
             <btn
               :disabled="!username || isLoading"
-              :is-loading="isLoading"
+              :is-loading="isLoading && loadingType === 'signup'"
+              class="bg-indigo-600"
+              @click="doSignup"
+            >Sign Up</btn>
+            <btn
+              :disabled="!username || isLoading"
+              :is-loading="isLoading && loadingType === 'login'"
               class="bg-green-600"
               @click="doLogin"
             >Login</btn>
           </div>
-          <button
-            v-else
-            type="submit"
-            :disabled="username === loginUserName || username === ''"
-            class="border border-transparent rounded-md flex font-medium bg-pink-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:(bg-gray-500 cursor-not-allowed) "
-            @click="doUpdate"
-          >Update Name</button>
+          <div v-else>
+            <btn
+              :disabled="!username || isLoading"
+              :is-loading="isLoading && loadingType === 'update'"
+              class="bg-pink-600"
+              @click="doUpdate"
+            >Update Name</btn>
+            <btn class="bg-gray-400" @click="showForm = false">Cancel</btn>
+          </div>
         </div>
       </div>
     </div>
