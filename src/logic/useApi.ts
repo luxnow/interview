@@ -3,7 +3,7 @@ import { useStorage } from '@vueuse/core'
 
 const isDev = process.env.NODE_ENV === 'development'
 export const api = axios.create({
-  baseURL: isDev ? 'http://localhost:3000' : ''
+  baseURL: isDev ? 'http://localhost:3000' : '',
   timeout: 10000,
 })
 

@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "test": "npx ava --watch",
     "dev:api": "vercel dev",
     "dev:vite": "vite --port 3333 --open",
     "build:vite": "cross-env NODE_ENV=production vite-ssg build",
@@ -34,6 +35,7 @@
     "@vitejs/plugin-vue": "^1.9.1",
     "@vue/compiler-sfc": "^3.2.16",
     "@vue/server-renderer": "^3.2.16",
+    "ava": "^3.15.0",
     "critters": "^0.0.10",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",

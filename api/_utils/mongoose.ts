@@ -10,17 +10,17 @@ Query.prototype.setOptions = function() {
   return this
 }
 
-const modelMap = {}
+const modelMap: { [key: string]: Object } = {}
 
 export const init = async() => {
   await mongoose.connect(process.env.MONGODB_URI)
 }
 
-export const getModel = (modelName) => {
+export const getModel = (modelName: string, schemaObj: {}) => {
   if (modelMap[modelName]) return modelMap[modelName]
 
   const ModelSchema = new Schema(
-    {},
+    schemaObj,
     {
       strict: false,
       timestamps: true,

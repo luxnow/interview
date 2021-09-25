@@ -15,10 +15,12 @@
 1. 前端须使用 React 或 Vue 开发。
 2. 后端须使用 Node.js 开发。为简化代码，请使用一个内存对象存储所有用户。不要使用数据库。
 ===>>> 后端使用 vercel的 [serverless](https://vercel.com/docs/concepts/functions/introduction) 服务, 之前没用过，初次使用, 代码在 `/api` 目录下。
-可能serverless服务会被杀掉，所以内存数据可能不对。
+可能serverless服务会被杀掉，所以使用MongoDB。
 
 3. 须使用 Typescript 语言。
 4. 须有单元测试。
+===>> 使用http请求服务的模式测试， 由于本地连接到mongodb.com提供的免费mongodb测试实例比较慢，开发测试都比较麻烦。可以后续本地启动mongodb数据库来加快开发测试。
+
 5. 不要拷贝自己或公司项目并在其上修改。
 6. 请仔细审题，不要添加无关本面试题的代码，也不要忽略要求的功能。
 7. README.md 须说明项目的启动方式及自动化测试方式。

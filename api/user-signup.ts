@@ -7,7 +7,7 @@ initDB()
 export default allowCors(async(request: VercelRequest, response: VercelResponse) => {
   const { username = '' } = request.body
 
-  const userModel = getModel('user')
+  const userModel = getModel('user', { username: { type: String, index: true } })
   const isExist = await userModel.findOne({ username })
   if (isExist) {
     response.status(200).send({
