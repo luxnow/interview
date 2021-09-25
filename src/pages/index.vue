@@ -30,6 +30,8 @@ const doSignup = async () => {
     token.value = data.token
     isLogin.value = true
     showForm.value = false
+    loginUserName.value = username.value
+    username.value = ''
   }
 }
 
@@ -67,6 +69,7 @@ const doUpdate = async () => {
 const doLogout = () => {
   token.value = ''
   err.value = ''
+  username.value = ''
   loginUserName.value = ''
   isLogin.value = false
   showForm.value = true
@@ -84,11 +87,7 @@ const doLogout = () => {
             <span class="text-purple-500">{{ loginUserName }}</span>, Welcome Back!
           </div>
           <btn @click="doLogout">Logout</btn>
-          <button
-            type="submit"
-            class="border border-transparent rounded-md flex font-medium bg-indigo-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            @click="doLogout"
-          >Logout</button>
+          <btn class="bg-indigo-600" @click="doLogout">Logout</btn>
           <btn v-if="!showForm" class="bg-green-600" @click="showForm = true">Update Name</btn>
         </div>
         <div v-if="showForm">

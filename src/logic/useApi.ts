@@ -25,6 +25,13 @@ api.interceptors.response.use((response) => {
   isLoading.value = false
   return response
 }, (error) => {
+  const status = error?.response?.status
+  if (status === 401) {
+    // simply alert it
+    alert('server response with 401')
+    localStorage.clear()
+    location.reload()
+  }
   isLoading.value = false
   return Promise.reject(error)
 })
