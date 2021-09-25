@@ -1,7 +1,7 @@
 import { VercelRequest, VercelResponse } from '@vercel/node'
-import allowCors from './utils/allowCors'
-import { verifyMiddleware, sign } from './utils/jwt'
-import { init as initDB, getModel } from './utils/mongoose'
+import allowCors from './_utils/allowCors'
+import { verifyMiddleware, sign } from './_utils/jwt'
+import { init as initDB, getModel } from './_utils/mongoose'
 
 initDB()
 
