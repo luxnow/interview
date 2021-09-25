@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
-import { api } from '~/logic/useApi'
+import { api, isLoading } from '~/logic/useApi'
 
 const username = ref('')
 const loginUserName = useStorage('loginUserName', '')
@@ -78,6 +78,7 @@ const doLogout = () => {
             Hey
             <span class="text-purple-500">{{ loginUserName }}</span>, Welcome Back!
           </div>
+          <btn @click="doLogout">Logout</btn>
           <button
             type="submit"
             class="border border-transparent rounded-md flex font-medium bg-indigo-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -111,11 +112,12 @@ const doLogout = () => {
               class="border border-transparent rounded-md flex font-medium bg-indigo-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               @click="doSignup"
             >Sign Up</button>
-            <button
-              type="submit"
-              class="border border-transparent rounded-md flex font-medium bg-green-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            <btn
+              :disabled="!username || isLoading"
+              :is-loading="isLoading"
+              class="bg-green-600"
               @click="doLogin"
-            >Login</button>
+            >Login</btn>
           </div>
           <button
             v-else
