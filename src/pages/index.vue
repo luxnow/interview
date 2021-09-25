@@ -14,9 +14,8 @@ const getUserData = async () => {
     return
 
   const { data } = await api.post('/api/user-info')
-  if (data.err) {
+  if (data.err)
     doLogout()
-  }
 }
 getUserData()
 
@@ -38,6 +37,7 @@ const doLogin = async () => {
     err.value = data.err
 
   if (data.token) {
+    err.value = ''
     token.value = data.token
     loginUserName.value = username.value
     isLogin.value = true
@@ -51,6 +51,7 @@ const doUpdate = async () => {
     err.value = data.err
 
   if (data.token) {
+    err.value = ''
     token.value = data.token
     loginUserName.value = username.value
     isLogin.value = true
@@ -60,6 +61,7 @@ const doUpdate = async () => {
 
 const doLogout = () => {
   token.value = ''
+  err.value = ''
   loginUserName.value = ''
   isLogin.value = false
   showForm.value = true
@@ -119,7 +121,7 @@ const doLogout = () => {
             v-else
             type="submit"
             :disabled="username === loginUserName || username === ''"
-            class="border border-transparent rounded-md flex font-medium bg-pink-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:(bg-gray-500 cursor-not-allowed)"
+            class="border border-transparent rounded-md flex font-medium bg-pink-600 shadow-sm mt-4 text-sm text-white w-full py-2 px-4 justify-center hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:(bg-gray-500 cursor-not-allowed) "
             @click="doUpdate"
           >Update Name</button>
         </div>
