@@ -1,38 +1,23 @@
 import { VercelRequest, VercelResponse } from '@vercel/node'
-import jwt from 'jsonwebtoken'
 import allowCors from './utils/allowCors.ts'
+import { verifyMiddleware } from './utils/jwt'
 import { init as initDB, getModel } from './utils/mongoose.ts'
 
-export default allowCors(async(request: VercelRequest, response: VercelResponse) => {
-  const { username = '' } = request.header
+initDB()
 
-  await initDB()
+export default allowCors(verifyMiddleware(async(request: VercelRequest, response: VercelResponse) => {
+  const userId = request.state.id
 
   const userModel = getModel('user')
-  const isExist = await userModel.findOne({ username })
-  if (isExist) {
-    console.log('====> end Time :', (Date.now() - time) / 1000)
+  const user = await userModel.findById(userId)
+  if (!user) {
     response.status(200).send({
-      err: 'user exist',
+      err: 'user not exist',
     })
     return
   }
 
-  const { _id } = await userModel.create({ username })
-  const tokenData = {
-    username,
-    id: _id.toString(),
-  }
-  const expiresIn = 24 * 3600 * 7
-  const token = await jwt.sign(
-    tokenData,
-    process.env.JWT_SECRET,
-    {
-      expiresIn,
-    },
-  )
-
   response.status(200).send({
-    token,
+    msg: 'data validate',
   })
-})
+}))
